@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { Routes, Route, Link } from 'react-router-dom'
+import Home from './Pages/Home'
+import About from './Pages/About'
+import Nav from './Pages/Nav'
 import './App.css'
 
 function App() {
@@ -9,7 +10,11 @@ function App() {
 
   return (
     <>
+      <Nav />
+      
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </>
