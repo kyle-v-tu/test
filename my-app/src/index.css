@@ -1,5 +1,8 @@
 :root {
-  --green: #355E3B;
+  --green: #353839;
+  --white: #F3F3F3;
+  font-family: "Source Serif 4", serif;
+  background-color: var(--green);
 }
 
 * {
