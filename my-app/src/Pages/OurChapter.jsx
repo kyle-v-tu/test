@@ -16,20 +16,13 @@ function OurChapter() {
         while (i < lines.length) {
           const line = lines[i];
 
-          // Class header line
           if (line.startsWith('The ')) {
             const header = line;
-
-            // Next line should be "Crossed ..."
             const crossedLine = lines[i + 1] || '';
             const crossedMatch = crossedLine.match(/^Crossed\s+(Spring|Fall|Summer)\s+(\d{4})/);
             const semester = crossedMatch ? `${crossedMatch[1]} ${crossedMatch[2]}` : '';
-
-            // Extract first pledge educator from "under the direction of Mr. X"
             const educatorMatch = crossedLine.match(/under the direction of (Mr\.\s+\S+(?:\s+"[^"]+")?\s+\S+)/);
             const educator = educatorMatch ? educatorMatch[1].trim() : '';
-
-            // Build slug from header
             const slug = header
               .replace(/^The\s+/, '')
               .replace(/"[^"]*"\s*/g, '')
@@ -51,6 +44,8 @@ function OurChapter() {
   return (
     <div className="our-chapter-page">
       <h1>UMCP Roster</h1>
+
+      {/* Desktop table */}
       <table className="chapter-table">
         <thead>
           <tr>
@@ -62,7 +57,7 @@ function OurChapter() {
         </thead>
         <tbody>
           {classes.map(({ header, semester, educator, slug }) => (
-            <tr 
+            <tr
               key={slug}
               onClick={() => navigate(`/our-chapter/${slug}`)}
               style={{ cursor: 'pointer' }}
@@ -70,11 +65,40 @@ function OurChapter() {
               <td>{header}</td>
               <td>{semester}</td>
               <td>{educator}</td>
-              <td><Link to={`/our-chapter/${slug}`}>View Class →</Link></td>
+              <td><Link to={`/our-chapter/${slug}`} onClick={e => e.stopPropagation()}>View Class →</Link></td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Mobile cards */}
+      <div className="chapter-cards">
+        {classes.map(({ header, semester, educator, slug }) => (
+          <div
+            key={slug}
+            className="chapter-card"
+            onClick={() => navigate(`/our-chapter/${slug}`)}
+          >
+            <div className="chapter-card-header">
+              <span className="chapter-card-name">{header}</span>
+              <span className="chapter-card-semester">{semester}</span>
+            </div>
+            {educator && (
+              <div className="chapter-card-educator">
+                <span className="chapter-card-label">Pledge Educator</span>
+                <span>{educator}</span>
+              </div>
+            )}
+            <Link
+              to={`/our-chapter/${slug}`}
+              className="chapter-card-link"
+              onClick={e => e.stopPropagation()}
+            >
+              View Class →
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
