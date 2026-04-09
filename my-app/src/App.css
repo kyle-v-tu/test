@@ -743,6 +743,10 @@ nav > .links > *:hover { color: grey; }
     align-self: auto; /* clears the flex-start override */
     min-width: 350px;
   }
+  .bom {
+    max-width: unset;
+    padding: 0;
+  }
 }
 
 @media (max-width: 550px) {
@@ -758,20 +762,21 @@ nav > .links > *:hover { color: grey; }
   .news {
     flex-direction: column;
     align-items: center;
-    padding: 0 12px;
+    padding: 0; /* remove the 0 12px */
   }
 
   .news > * {
     width: 100%;
     min-width: unset;
-    margin: 8px 0;
     box-sizing: border-box;
+    margin: 5px 0; /* was inheriting margin: 12px from global, causing right overflow */
   }
 
   .bom,
   .instagram {
     align-self: auto;
     min-width: unset;
+    width: 100%;
   }
 
   .instagram {
