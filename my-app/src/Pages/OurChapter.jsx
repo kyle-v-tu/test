@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Carousel from './Carousel'
 
 function OurChapter() {
   const [classes, setClasses] = useState([]);
@@ -43,6 +44,7 @@ function OurChapter() {
 
   return (
     <div className="our-chapter-page">
+      <Carousel />
       <h1>UMCP Roster</h1>
 
       {/* Desktop table */}
