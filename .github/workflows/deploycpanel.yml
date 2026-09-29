@@ -14,7 +14,6 @@ jobs:
 
     - name: Install & Build
       run: |
-        cd my-app
         npm install
         npm run build
 
@@ -24,5 +23,5 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./my-app/dist/
+        local-dir: ./dist/
         server-dir: ./
